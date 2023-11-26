@@ -1,14 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-// Define a structure for a term in a polynomial
 struct Term {
     int coefficient;
     int exponent;
     struct Term* next;
 };
 
-// Function to create a new term
 struct Term* createTerm(int coefficient, int exponent) {
     struct Term* newTerm = (struct Term*)malloc(sizeof(struct Term));
     newTerm->coefficient = coefficient;
@@ -17,7 +14,6 @@ struct Term* createTerm(int coefficient, int exponent) {
     return newTerm;
 }
 
-// Function to insert a term into a polynomial
 void insertTerm(struct Term** poly, int coefficient, int exponent) {
     struct Term* newTerm = createTerm(coefficient, exponent);
 
@@ -32,7 +28,6 @@ void insertTerm(struct Term** poly, int coefficient, int exponent) {
     }
 }
 
-// Function to display a polynomial
 void displayPolynomial(struct Term* poly) {
     while (poly != NULL) {
         printf("%dx^%d", poly->coefficient, poly->exponent);
@@ -44,7 +39,6 @@ void displayPolynomial(struct Term* poly) {
     printf("\n");
 }
 
-// Function to add two polynomials
 struct Term* addPolynomials(struct Term* poly1, struct Term* poly2) {
     struct Term* result = NULL;
 
@@ -70,7 +64,6 @@ struct Term* addPolynomials(struct Term* poly1, struct Term* poly2) {
     return result;
 }
 
-// Function to multiply two polynomials
 struct Term* multiplyPolynomials(struct Term* poly1, struct Term* poly2) {
     struct Term* result = NULL;
 
@@ -81,7 +74,6 @@ struct Term* multiplyPolynomials(struct Term* poly1, struct Term* poly2) {
             int coef = poly1->coefficient * tempPoly2->coefficient;
             int exp = poly1->exponent + tempPoly2->exponent;
 
-            // Add the term to the result
             insertTerm(&result, coef, exp);
 
             tempPoly2 = tempPoly2->next;
@@ -93,7 +85,6 @@ struct Term* multiplyPolynomials(struct Term* poly1, struct Term* poly2) {
     return result;
 }
 
-// Function to free the memory allocated for a polynomial
 void freePolynomial(struct Term* poly) {
     struct Term* temp;
 
@@ -109,8 +100,7 @@ int main() {
     struct Term* poly2 = NULL;
     struct Term* result;
 
-    // Reading and storing polynomials
-    int n1, n2; // Number of terms in each polynomial
+    int n1, n2; 
     int coef, exp;
 
     printf("Enter the number of terms in the first polynomial: ");
@@ -129,24 +119,20 @@ int main() {
         insertTerm(&poly2, coef, exp);
     }
 
-    // Displaying the polynomials
     printf("\nFirst Polynomial: ");
     displayPolynomial(poly1);
 
     printf("Second Polynomial: ");
     displayPolynomial(poly2);
 
-    // Multiplication of polynomials
     result = multiplyPolynomials(poly1, poly2);
     printf("\nProduct of the two polynomials: ");
     displayPolynomial(result);
 
-    // Addition of polynomials
     result = addPolynomials(poly1, poly2);
     printf("\nSum of the two polynomials: ");
     displayPolynomial(result);
 
-    // Freeing allocated memory
     freePolynomial(poly1);
     freePolynomial(poly2);
     freePolynomial(result);
