@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define a structure for a node in the linked list
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Function to display the linked list
 void display(struct Node* head) {
     struct Node* current = head;
     while (current != NULL) {
@@ -17,7 +15,6 @@ void display(struct Node* head) {
     printf("NULL\n");
 }
 
-// Function to insert a node at the beginning of the linked list
 struct Node* insertAtBeginning(struct Node* head, int value) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = value;
@@ -25,7 +22,6 @@ struct Node* insertAtBeginning(struct Node* head, int value) {
     return newNode;
 }
 
-// Function to insert a node at the end of the linked list
 struct Node* insertAtEnd(struct Node* head, int value) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = value;
@@ -44,7 +40,6 @@ struct Node* insertAtEnd(struct Node* head, int value) {
     return head;
 }
 
-// Function to insert a node at a specified position in the linked list
 struct Node* insertAtPosition(struct Node* head, int value, int position) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = value;
@@ -69,7 +64,6 @@ struct Node* insertAtPosition(struct Node* head, int value, int position) {
     return head;
 }
 
-// Function to delete a node from the beginning of the linked list
 struct Node* deleteFromBeginning(struct Node* head) {
     if (head == NULL) {
         printf("List is empty\n");
@@ -82,7 +76,6 @@ struct Node* deleteFromBeginning(struct Node* head) {
     return head;
 }
 
-// Function to delete a node from the end of the linked list
 struct Node* deleteFromEnd(struct Node* head) {
     if (head == NULL) {
         printf("List is empty\n");
@@ -104,7 +97,6 @@ struct Node* deleteFromEnd(struct Node* head) {
     return head;
 }
 
-// Function to delete a node from a specified position in the linked list
 struct Node* deleteFromPosition(struct Node* head, int position) {
     if (head == NULL) {
         printf("List is empty\n");
@@ -133,8 +125,6 @@ struct Node* deleteFromPosition(struct Node* head, int position) {
     free(temp);
     return head;
 }
-
-// Function to free memory allocated for the linked list
 void freeList(struct Node* head) {
     struct Node* current = head;
     while (current != NULL) {
@@ -144,7 +134,6 @@ void freeList(struct Node* head) {
     }
 }
 
-// Main function to demonstrate the linked list operations
 int main() {
     struct Node* head = NULL;
     int choice, value, position;
